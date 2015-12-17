@@ -56,17 +56,21 @@ public class DatasourceDemo extends HttpServlet {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		Connection conn = null;
+		PrintWriter out = response.getWriter();
 		
 		try {
 			conn = ds.getConnection();
+			
+			// use connection
+			out.println("Connected to database via JNDI");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			out.println("Connection error!");
 			e.printStackTrace();
 		}
 		
-		// use connection
-		PrintWriter out = response.getWriter();
-		out.println("Connected to database via JNDI");
+
 		
 		try {
 			conn.close();
